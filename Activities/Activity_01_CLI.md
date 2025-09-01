@@ -119,7 +119,7 @@ history | tail -n 10 > submission.txt
 
 3. Add your name and UVA computing ID to the top of your `submission`.txt file. We can do this with the `echo` command.
 ```
-echo "Name: [Your Name] | ID: [Your ID]" > submission.txt
+echo "Name: [Your Name] | ID: [Your ID]" >> submission.txt
 ```
 <br>
 
