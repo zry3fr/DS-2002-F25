@@ -74,9 +74,9 @@ ls
 <br>
 
 ## Part 3: Permissions & Cleanup
-1. Change the permissions of `notes.txt` so that the owner can read, write, and execute the file.
+1. Change the permissions of `notes.txt` so that the owner can read and write the file.
 ```
-chmod u+rwx notes.txt
+chmod u+rw notes.txt
 ```
 <br>
 
@@ -134,6 +134,9 @@ cat notes.txt >> submission.txt
 cat submission.txt
 ```
 <br>
+
+## Submit
+Submit your `submission.txt` file on Canvas.
 
 ## Final Cleanup
 1. Navigate up to the parent directory.
