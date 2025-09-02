@@ -98,7 +98,7 @@ rm final_project_plan.txt
 ```
 <br>
 
-5. View the list of files one last time to confirm a clean slate.
+5. View the list of files one last time to confirm you only have `notes.txt`.
 ```
 ls
 ```
