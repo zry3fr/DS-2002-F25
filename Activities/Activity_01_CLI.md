@@ -135,8 +135,10 @@ cat submission.txt
 ```
 <br>
 
-## Submit
-Submit your `submission.txt` file on Canvas.
+## Activity Submission
+Upload the `submission.txt` file to Canvas for grading. Congratulations, you've successfully completed the activity!
+
+<br>
 
 ## Final Cleanup
 1. Navigate up to the parent directory.
@@ -149,7 +151,3 @@ cd ..
 ```
 rm -r ds_activity
 ```
-<br>
-
-Activity Submission
-Upload the `submission.txt` file to Canvas for grading. Congratulations, you've successfully completed the activity!
