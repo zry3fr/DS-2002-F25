@@ -17,8 +17,8 @@ First, you need to create your own copy of this repository. This is called forki
 ## Step 2: Clone Your Fork
 Now you need to get the code from your personal GitHub copy onto your local computer. This is called cloning.
 1. On your new forked repository page, click the green "**Code**" button.
-2. Make sure the SSH tab is selected.
-3. Copy the URL to your clipboard. It will look like `https://github.com/YOUR-USERNAME/DS-2002-F25.git`.
+2. Make sure the **SSH** tab is selected.
+3. Copy the URL to your clipboard. It will look like `git@github.com:YOUR-USERNAME/DS-2002-F25.git`.
 4. Open your **Terminal** (or Git Bash/WSL) and run the `git clone` command followed by the URL you copied:
 ```
 git clone [paste your copied URL here]
