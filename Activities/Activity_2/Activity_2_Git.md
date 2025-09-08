@@ -42,7 +42,7 @@ For example:
 ```
 Jane Doe, I can play the ukulele, ls
 ```
-
+2. NAVIGATE TO THE `Activity_2` DIRECTORY!
 2. Choose one of the following methods to edit the `class_log.txt` file:
   - Open the file from the command line using the `nano` command:
 ```
@@ -54,7 +54,7 @@ echo 'Jane Doe, I can play the ukulele, ls' >> class_log.txt
 ```
   - Open the file in your favorite text editor.
 
-3. Save the file!
+3. Make sure the file is saved!
 
 <br>
 
