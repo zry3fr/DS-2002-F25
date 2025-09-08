@@ -17,14 +17,15 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Get token
+      - name: Generate App Token
+        id: generate_token
         uses: actions/create-github-app-token@v1
-        id: app-token
         with:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}
-      - name: automerge
+
+      - name: Auto-merge PRs
         uses: pascalgn/automerge-action@v0.16.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
           MERGE_METHOD: squash
