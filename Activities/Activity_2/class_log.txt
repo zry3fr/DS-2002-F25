@@ -1,6 +1,3 @@
 # DS 2002 Contributions
 ---
-Format:
-[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
----
-Jane Doe, I can play the ukulele, ls
+Divya Ramakrishnan, I like to play badminton, cat
