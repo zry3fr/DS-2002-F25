@@ -1,0 +1,1 @@
+echo 'Ella Harig, I can wiggle my ears, pwd' >>class_log.txt
