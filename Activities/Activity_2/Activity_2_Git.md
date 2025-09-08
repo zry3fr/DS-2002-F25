@@ -62,11 +62,12 @@ echo 'Jane Doe, I can play the ukulele, ls' >> class_log.txt
 You've made a change, but Git doesn't know about it yet. This is where the core Git workflow comes in.
 
 1. Stage your change with `git add`, either implicitly or explicitly:
-   - **Implicitly**: this will stage any files you have added, deleted, or modified and saved on this branch.
+- **Implicitly**: this will stage any files you have added, deleted, or modified and saved on this branch.
 ```
 git add .
 ```
-   - **Explicitly**: this will stage only files you explicitly name that you have added, deleted, or modified and saved on this branch.
+
+- **Explicitly**: this will stage only files you explicitly name that you have added, deleted, or modified and saved on this branch.
 ```
 git add class_log.txt
 ```
