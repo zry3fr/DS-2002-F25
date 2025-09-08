@@ -26,6 +26,6 @@ jobs:
 
       - name: Auto-merge PRs
         uses: pascalgn/automerge-action@v0.16.0
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-          MERGE_METHOD: squash
+        with:
+          github-token: ${{ steps.generate_token.outputs.token }}
+          merge-method: squash
