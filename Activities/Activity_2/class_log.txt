@@ -3,5 +3,5 @@
 Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
-Jane Doe, I can play the ukulele, lsYuezhang Chen, I am a trilingualist, ls 
+Yuezhang Chen, I am a trilingualist, ls 
 
