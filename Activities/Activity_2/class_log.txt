@@ -4,3 +4,4 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 Jane Doe, I can play the ukulele, ls
+Jesse Rimon, My favorite artist is The Weeknd, cd ~; ls -R
