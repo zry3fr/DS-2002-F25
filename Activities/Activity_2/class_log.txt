@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Zilan Saadi, I am the oldest child, ls
 Bacheler Burt, I play the drums, ls
 Somin Ahn, my favorite fruit is apple, mv
 Natalie Nguyen, I LOVE to travel, My favorite Bash Command is mkdir (mainly because how people pronounce it :p)
