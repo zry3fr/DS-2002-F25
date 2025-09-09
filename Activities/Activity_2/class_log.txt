@@ -1,6 +1,6 @@
 # DS 2002 Contributions
 ---
 Format:
-[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
+[Natalie Ladocsi], [I'm exactly 100 years younger than Dr. Seuss], [ls]
 ---
 Jane Doe, I can play the ukulele, ls
