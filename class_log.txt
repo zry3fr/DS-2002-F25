@@ -1,2 +1,2 @@
-echo "Heidi Williams, I can legally drive an ambulance, cat" >> class_log.txt
+Heidi Williams, I can legally drive an ambulance, cat
 
