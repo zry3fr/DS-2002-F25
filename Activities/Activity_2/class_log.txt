@@ -1,9 +1,6 @@
 # DS 2002 Contributions
 
----
-Format:
----
-
+Shreeja Tangutur, Everyone in my family is born in a different generation!, mkdir
 Isaac Yoo, I am a 2nd degree blackbelt, ls
 Shravya Etta, I'm on a competitive dance team, nano
 Olivia Smith, I have a 548 day Doulingo streak, touch
