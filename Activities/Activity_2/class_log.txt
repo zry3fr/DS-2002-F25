@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Laura Segura, I play racquetball, cd
 Ruizhang Chen, Im a soccer referee, ls
 Thomas Hooks, I have a dog named Bowser, clear
 Divya Ramakrishnan, I like to play badminton, cat
