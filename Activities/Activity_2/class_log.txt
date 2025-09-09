@@ -4,3 +4,4 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 Jane Doe, I can play the ukulele, ls
+Blake Richardson, I play the guitar and violin, cp
