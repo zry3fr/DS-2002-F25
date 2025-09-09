@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Morhan Phelps, I like to knit, cd
 Shreyas Mayya, I play the clarinet, rm
 Connor McCartney, I had 5 wisdom teeth, cd
 Yuezhang Chen, I am a trilingualist, ls 
