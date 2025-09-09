@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Jibril Hersi, i have 5 siblings, pwd
 Surya Vemulapalli, I liking hiking in the woods, pwd
 Saad Shahzad, Ive been to Paris, ls
 Jesse Rimon, My favorite artist is The Weeknd, cd ~; ls -R
