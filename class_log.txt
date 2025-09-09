@@ -1,3 +1,4 @@
+Anaya Green, I did cheer for 10 years, ls
 Cooper Carlson, I can play the saxophone, ls
 echo 'Ella Harig, I can wiggle my ears, pwd' >>class_log.txt
 Sahana Krishnaraj, I have a motorcycle license, history 
