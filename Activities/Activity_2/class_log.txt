@@ -2,9 +2,10 @@
 
 ---
 Format:
-[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
+Olivia Smith, I have a 548 day Doulingo streak, touch
 ---
 
+Olivia Smith, I have a 548 day Doulingo streak, touch
 Fede Bandoni, I can play the Piano and French Horn, ls
 Shahmeer danish, I have lived in 5 countries, cd
 Jibril Hersi, i have 5 siblings, pwd
