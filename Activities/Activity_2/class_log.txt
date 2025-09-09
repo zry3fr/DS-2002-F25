@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Victoria Markakis, I am from Brazil, cat
 Zilan Saadi, I am the oldest child, ls
 Bacheler Burt, I play the drums, ls
 Somin Ahn, my favorite fruit is apple, mv
