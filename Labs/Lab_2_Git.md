@@ -2,17 +2,20 @@
 
 Follow all the steps below for practice using GitHub. You an use your web browser to complete these steps, or the terminal if you like.
 
-Create a single GitHub Gist to submit the URLs you create in these steps, and submit it for grading.
+**Create a single GitHub Gist to submit the URLs you create in these steps, and submit it for grading.**
+
+## 0. Setup
+- Ensure you have already installed `git` for the envionment you will be working in to interact with the command-line.
+- Ensure you have set up your SSH key authentication with GitHub and the environment you are working in.
+  - If you use the same environment as you did to complete Activity 2, you should be all set!
+- If you need a reference:
+  - Go to https://uvads.github.io/git-basics/ and work through pages 0, 1, and 2. When setting up `git` CLI authentication, I strongly suggest SSH key authentication. However, if you already have this set up, you do not need to change.
 
 ## 1. Git/GitHub Basics
-
-Go to https://uvads.github.io/git-basics/ and work through pages 0, 1, and 2. When setting up `git` CLI authentication, I strongly suggest SSH key authentication. However, if you already have this set up, you do not need to change.
-
 To test your understanding, be sure you understand how to do the following well:
-
-- Install the `git` command-line and authenticate to GitHub using SSH key authentication
-- Create a new repository in GitHub and clone it to your local machine.
-- Use `git add`, `git commit`, and `git push/pull` your changes to your GitHub repository.
+- Create a new repository in GitHub, **using GitHub**
+- Clone your new repository to your local machine.
+- Use `git add`, `git commit`, and `git push` your changes to your GitHub repository.
 - Check the status of your local repository using `git status`.
 - Display the commit log for a repository using `git log`.
 - See changes made to a file using `git diff`.
