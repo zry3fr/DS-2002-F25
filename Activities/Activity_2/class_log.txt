@@ -2,8 +2,10 @@
 
 ---
 Format:
+[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
+---
 
-
+Jesse Rimon, My favorite artist is The Weeknd, cd ~; ls -R
 Natalie Ladocsi, I'm exactly 100 years younger than Dr. Seuss, ls
 Blake Richardson, I play the guitar and violin, cp
 Marco Velazquez, I enjoy going to the gym, ls
