@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Austin Blackburn, I can play the guitar, mkdir
 Dami, I like to read, ls
 Mercy Soly, I can swime, ls
 Victoria Markakis, I am from Brazil, cat
