@@ -1,5 +1,11 @@
 # DS 2002 Contributions
 
+---
+Format:
+[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
+---
+
+Lexie Chen, I can always find a parking spot, cd ~
 Shreeja Tangutur, Everyone in my family is born in a different generation!, mkdir
 Isaac Yoo, I am a 2nd degree blackbelt, ls
 Shravya Etta, I'm on a competitive dance team, nano
