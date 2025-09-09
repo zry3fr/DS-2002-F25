@@ -5,6 +5,7 @@ Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
 
+Wenwan Xu, I just removed all 4 of my wisdom teeth over the summer, ls
 Emma Ellsworth, I have a cat, cd
 Sammy Shin, I hate hamburgers, cd
 Samrawit Yemane, I used to play the Viola, ls
