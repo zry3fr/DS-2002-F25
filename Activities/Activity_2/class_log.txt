@@ -1,6 +1,16 @@
-\s# DS 2002 Contributions
+# DS 2002 Contributions
+
 ---
 Format:
 [Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
 ---
+
 Mercy Soly, I can swime, ls
+Victoria Markakis, I am from Brazil, cat
+Zilan Saadi, I am the oldest child, ls
+Bacheler Burt, I play the drums, ls
+Somin Ahn, my favorite fruit is apple, mv
+Natalie Nguyen, I LOVE to travel, My favorite Bash Command is mkdir (mainly because how people pronounce it :p)
+Katie Manley, I play soccer, ls
+Araceli Soto, born abroad, echo
+Pranav Vaddepalli, I like to play ping pong, grep
