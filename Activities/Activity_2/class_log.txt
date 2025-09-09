@@ -1,10 +1,6 @@
 # DS 2002 Contributions
 
----
-Format:
-[Your Name], [A Fun Fact About You], [Your Favorite Bash Command]
----
-
+Samrawit Yemane, I used to play the Viola, ls
 Brishti Chakraborty, I love to read and write, ls
 Olivia Pang, I play the violin, echo
 Lexie Chen, I can always find a parking spot, cd ~
