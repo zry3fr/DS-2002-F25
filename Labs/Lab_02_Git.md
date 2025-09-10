@@ -65,7 +65,7 @@ git push -u origin main
 
 <br>
 
-## Part 3. Set up your GitHub Profile README Page
+## Part 3. Set up your GitHub Profile README Page (5 out of 30 points)
 
 You can use GitHub to showcase your own work, interests, and projects.
 
@@ -75,7 +75,7 @@ You can use GitHub to showcase your own work, interests, and projects.
 
 <br>
 
-## Part 4. Fork a Repository and Submit a Pull Request
+## Part 4. Fork a Repository and Submit a Pull Request (5 out of 30 points)
 
 1. Go to https://github.com/austin-t-rivera/ds_2002-directory/ and fork the repository by clicking on the FORK button in the upper-right of the page. Create the fork in your own GitHub account.
 2. Clone your fork to your local computer, or open it in a GitHub Codespace.
