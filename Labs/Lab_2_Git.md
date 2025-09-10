@@ -1,8 +1,5 @@
 # Lab 2: GitHub
-
-Follow all the steps below for practice using GitHub. You an use your web browser to complete these steps, or the terminal if you like.
-
-
+Follow all the steps below for practice using Git and GitHub.
 
 <br>
 
@@ -15,13 +12,14 @@ Part 3: <paste repo URL here>
 Part 4: <paste repo URL here>
 ```
 - Ensure you have already installed `git` for the environment you will be working in.
-- Ensure you have set up your **SSH key authentication** with GitHub and your working environment. If you already completed Activity 2, you should be all set!
+- Ensure you have set up your **SSH key authentication** with GitHub and your working environment. If you completed Activity 2, you should be all set!
 - **Reference**: If you still need to set up and dislike the resources on Canvas, you can go to https://uvads.github.io/git-basics/ and work through pages 0, 1, and 2. When setting up `git` CLI authentication, I strongly suggest SSH key authentication.
 
 <br>
 
 ## Part 1. Git/GitHub Basics (10 out of 30 points)
-For this quick exercise, you will create a simple project to demonstrate your understanding of fundamental Git commands.
+For this quick exercise, you will create a simple project to demonstrate your understanding of fundamental Git commands. Rather than cloning a repository, we will be making one in GitHub and one in out local Git, and then we will be connecting them!
+
 1. Create a new repository on GitHub called `data-science-lab-2-yourcomputingid` (e.g., data-science-lab-2-atr8ec). Do not add a README or any other files during creation.
 2. On your local machine, navigate to the directory where you store your projects (**I highly recommend setting up the following directory** `~/Documents/GitHub/DS_2002`) and initialize a new Git repository from the command line and name it something else, because we can!:
 ```
@@ -50,7 +48,7 @@ git push -u origin main
 
 <br>
 
-## 2. Practice With GitHub Skills (10 out of 30 points)
+## Part 2. Practice With GitHub Skills (10 out of 30 points)
 
 1. Go to **GitHub Skills** https://skills.github.com/
 2. Find the first lesson, "Introduction to GitHub" and right-click on the link to open it in a new browser tab.
@@ -63,7 +61,7 @@ git push -u origin main
 9. Keep going until you see "Congratulations, you've completed this course and joined the world of developers!"
 10. Add the URL to the new repository you created in this step to the GitHub Gist.
 
-**OPTIONAL EXTRA FUN** GitHub Skills has many other lessons you can complete. Give some more a try!
+**OPTIONAL EXTRA FUN:** GitHub Skills has many other lessons you can complete. Give some more a try!
 
 <br>
 
@@ -77,7 +75,7 @@ You can use GitHub to showcase your own work, interests, and projects.
 
 <br>
 
-## 4. Fork a Repository and Submit a Pull Request
+## Part 4. Fork a Repository and Submit a Pull Request
 
 1. Go to https://github.com/austin-t-rivera/ds_2002-directory/ and fork the repository by clicking on the FORK button in the upper-right of the page. Create the fork in your own GitHub account.
 2. Clone your fork to your local computer, or open it in a GitHub Codespace.
@@ -85,7 +83,7 @@ You can use GitHub to showcase your own work, interests, and projects.
 4. Inside of that subdirectory, create a `README.md` file.
 5. Paste the code below into that file, and fill out the appropriate fields. If you'd like to include an image of yourself (jpg, png, gif, etc.) add it to your subdirectory as well. Introduce yourselves! If you need an example for reference, see [this page](https://github.com/austin-t-rivera/ds_2002-directory/blob/ecbac67d680d881c7a5b50d133998529e1d1e591/people/atr8ec/README.md). Here is a Markdown [reference](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for formatting your page.
 
-    Be sure the first line uses the `#` character followed by your name.
+    Be sure the first line uses the `#` character followed by a space and your name.
 
     ```
     # Your Name
@@ -109,3 +107,8 @@ Follow [these instructions](https://pages.github.com/) and create a "user" site.
 - https://schacon.github.io/
 - https://nmagee.github.io/
 - https://mk.gg/
+
+<br>
+
+## Submission
+Copy and paste the URL of your Gist into the Lab 2 submission page on Canvas.
