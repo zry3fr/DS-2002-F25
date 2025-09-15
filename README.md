@@ -29,7 +29,7 @@ git merge upstream/main main
 
 This can be run in a single block:
 ```
-git remote add upstream git@github.com:nmagee/ds2002-course.git
+git remote add upstream git@github.com:austin-t-rivera/DS-2002-F25.git
 git fetch upstream
 git merge upstream/main main
 ```
