@@ -58,8 +58,9 @@ git merge upstream/main main
 ## Step 1: Set Up Your Project
 1. If not already, open your Git Bash (Windows) or Terminal (macOS).
 2. Use `cd` to navigate to your `DS-2002-F25` repository.
-3. Run `git checkout -b Activity_3` to create and move to a new branch named "Activity_3".
-4. Create a new directory for this project and navigate into it:
+3. Use `cd` to further navigate to your `/Activities/Activity_03` directory.
+4. Run `git checkout -b Activity_3` to create and move to a new branch named "Activity_3".
+5. Create a new directory for this project and navigate into it:
 ```
 mkdir bash_pipeline && cd bash_pipeline
 ```
@@ -219,4 +220,5 @@ clean:
 3. Push your local branch to your remote repository: `git push --set-upstream origin Activity_3`
 4. Navigate to your forked repository on GitHub.
 5. Switch to your `Activity_3` branch on GitHub.
-6. Navigate to the 
+6. Navigate to your `bash_pipeline` directory.
+7. Copy the URL to your `bash_pipeline` directory on your `Activity_3` branch, and paste the URL into the Activity 3 assignment on Canvas.
