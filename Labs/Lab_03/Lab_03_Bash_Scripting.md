@@ -1,102 +1,205 @@
-# Lab 3: Bash Scripting with the Star Wars API
+# Lab 3: Bash Scripting with Aviation Weather Data ✈️
 
-<img src="https://i.imgflip.com/13a6c5.jpg" align="right" style="float:right; width:500px;" />
+This lab guides you through building a simple but complete data pipeline using Bash scripts and a `Makefile`. You'll use `curl` to fetch raw weather data from the Aviation Weather API, `jq` to process the JSON, and `make` to automate the entire workflow. The goal is to fetch and analyze METAR data (a weather report for airports) for a list of U.S. airports.
 
-Welcome to Lab 3! This week, you'll apply what you've learned about Bash scripting to build a more complex data pipeline. You'll use curl to fetch data from the Star Wars API, jq to process that JSON, and a Makefile to automate the entire process. This lab will require you to think critically about how to chain commands, handle errors, and use Bash's control flow features. The final product should be a set of scripts that fetches data for all Star Wars films, extracts specific details, and outputs a formatted report.
+---
 
-This lab should test your understanding of how to use these tools together to solve a more complex problem.
+### Step 1: Set Up Your Project
 
-Good luck and may the source be with you! 🤓
+1.  Open your terminal (`Git Bash` on Windows or `Terminal` on macOS).
+2.  Navigate to the `Labs/Lab_03` directory within your `DS-2002-F25` repository.
+3.  Create and switch to a new branch for this lab:
+    ```bash
+    git checkout -b Lab_3
+    ```
+4.  Create a new directory for this lab and move into it:
+    ```bash
+    mkdir aviation_weather_pipeline && cd aviation_weather_pipeline
+    ```
+5.  Create a file named `airport_codes.txt` and add the following airport identifiers. These are **ICAO codes** that uniquely identify airports worldwide. In the U.S., they typically start with a 'K'.
+    ```bash
+    touch airport_codes.txt
+    ```
+6.  Open `airport_codes.txt` with a text editor (`nano`, `vim`, or any other) and add these codes, each on a new line:
+    ```
+    KBWI
+    KDCA
+    KIAD
+    KJFK
+    KPHL
+    ```
 
-<br>
+---
 
-## Step 0. Setup
-1. Open your Terminal (macOS) or Git Bash (WIndows) and navigate to your DS-2002-F25 repository.
-2. Run the `update_repo.sh` script.
-3. Create a new branch called `Lab_3` and move into it:
-```
-git checkout -b Lab_3
-```
-4. Make a new directory for this lab in your Lab_03 directory, and navigate into your new directory:
-```
-mkdir Labs/Lab_03/sw_api_pipeline && cd Labs/Lab_03/sw_api_pipeline
-```
+### Step 2: Create the `fetch_metars.sh` Script
 
-<br>
+This script will use `curl` to fetch JSON data for each airport and save it to a separate file.
 
-## Step 1: Create the `fetch_films.sh` Script
-This script will fetch details for all Star Wars films from the SWAPI (Star Wars API). Unlike the last activity, the API data is paginated, which means you'll need to use a loop to fetch all the data.
+1.  Create the script file and make it executable:
+    ```bash
+    touch fetch_metars.sh
+    chmod +x fetch_metars.sh
+    ```
+2.  Open `fetch_metars.sh` and add the following code, line by line.
 
-1. Create the script: Create a new file named `fetch_films.sh`.
-2. Add the shebang and error handling: Start the script with a shebang and `set -e` to ensure the script exits immediately if any command fails.
-```
-#!/bin/bash
-set -e
-```
-3. Define a variable: Define a variable `URL` to hold the initial API endpoint URL: `https://swapi.dev/api/films/`.
-4. Loop to fetch all films: Use a `while` loop to repeatedly fetch data until there are no more pages.
-    - Inside the loop, use `curl` to fetch the JSON data from the current `$URL`.
-    - Use `jq` to extract the `results` array and append it to a temporary file, let's say `all_films.json`. Then, extract the URL for the next page from the `next` key in the JSON response.
-    - The loop should continue as long as the `$URL` variable is not empty.
+    **Add the Shebang and `set -e`**
+    ```bash
+    #!/bin/bash
+    # Exit immediately if a command exits with a non-zero status.
+    set -e
+    ```
+    The **shebang** `#!` tells the operating system to execute this file using `/bin/bash`. The `set -e` command is a crucial safety measure in Bash scripting that will **immediately exit the script if any command fails**. This prevents a pipeline from running with bad or missing data.
 
-5. Output success or error:
-    - After the loop, check if the all_films.json file was created and is not empty. If it is, output a success message to stdout.
-    - If the file is not created or is empty, output an error message to stderr and exit with a non-zero status.
+    **Define Variables**
+    ```bash
+    API_URL="[https://aviationweather.gov/api/data/metar](https://aviationweather.gov/api/data/metar)"
+    OUTPUT_DIR="raw_metars"
+    AIRPORT_CODES_FILE="airport_codes.txt"
 
-6. Make the script executable:
-```
-chmod +x fetch_films.sh
-```
+    mkdir -p "$OUTPUT_DIR"
+    echo "Fetching METAR data for airports..."
+    ```
+    Using **variables** makes your script cleaner and easier to modify. The `mkdir -p` command creates a directory for our raw data. The `-p` flag ensures it won't throw an error if the directory already exists.
 
-<br>
+    **Loop Through the Airport Codes**
+    ```bash
+    while read -r airport_code; do
+      if [ -z "$airport_code" ]; then
+        continue
+      fi
 
-## Step 2: Create the `process_films.sh` Script
-This script will read the `all_films.json` file, extract key information for each film, and save the output to a new file in a more readable format.
+      URL="$API_URL?ids=$airport_code&format=json"
+      OUTPUT_FILE="$OUTPUT_DIR/${airport_code}.json"
 
-1. Create the script: Create a new file named `process_films.sh`.
-2. Add the shebang and error handling: Start the script with a shebang and `set -e`.
-3. Check for input file: Add a conditional statement (`if`) to check if `all_films.json` exists and is not empty. If it doesn't, print an error to `stderr` and exit.
-4. Process the JSON:
-    - Use `jq` to read the `all_films.json` file.
-    - Pipe the output of that command to a second `jq` command to iterate over the array of films.
-    - For each film in the array, extract the title, director, episode_id, and release_date.
-    - Format the output as a clean, human-readable report. For example, a single line for each film that says something like, `"Title: <title>, Episode: <id>, Directed by: <director>, Released: <date>"`.
-    - Redirect this formatted output to a new file, `film_report.txt`.
+      echo "  -> Fetching data for $airport_code..."
+      
+      curl -s "$URL" -o "$OUTPUT_FILE" 2>&1
+    
+      if [ $? -ne 0 ]; then
+          echo "Error: curl failed for $airport_code." >&2
+          exit 1
+      fi
+      
+      if [ ! -s "$OUTPUT_FILE" ] || [ "$(jq 'length' "$OUTPUT_FILE")" -eq 0 ]; then
+          echo "Warning: No METAR data found for $airport_code. The API returned an empty response." >&2
+      else
+          echo "  -> Data for $airport_code saved successfully."
+      fi
+    done < "$AIRPORT_CODES_FILE"
+    
+    echo "Data fetching complete. Check the '$OUTPUT_DIR' directory."
+    ```
+    The **`while read` loop** iterates through each line of the `airport_codes.txt` file. We construct a unique URL and output file name for each airport. The **`curl`** command fetches the data. The `-s` flag makes it silent (no progress bar), and `-o` specifies the output file. The `2>&1` redirects standard error to standard output so that any error messages from `curl` are visible. We then check **`$?`**, a special variable that holds the exit status of the previous command. A value of `0` means success, so we exit if it's not `0`. We also check if the output file is empty or if its JSON array has a length of zero using `jq`, which indicates no data was found.
 
-Output success: If the processing is successful, print a message to `stdout` indicating the report was created.
+---
 
-Make the script executable:
-```
-chmod +x process_films.sh
-```
+### Step 3: Create the `analyze_data.sh` Script
 
-<br>
+This script will read the JSON files, use `jq` to extract key information, and save it all to a single CSV file.
 
-## Step 3: Create the `Makefile`
-Automate the entire process with a `Makefile`. This file should define targets that perform the fetching, processing, and cleanup of your project files.
-1. Create the file: Create a new file named `Makefile`.
-2. Add a default target: Create an `all` target that depends on a `report` target.
-3. Add a `fetch` target: Create a `fetch` target that runs the `fetch_films.sh` script.
-4. Add a `report` target: This target should depend on `fetch` to ensure the data is fetched before it's processed. The recipe should run the `process_films.sh` script.
-5. Add a `clean` target: Add a phony target `clean` that removes the `all_films.json` and `film_report.txt` files to reset the project. This is a crucial step for good data engineering practice.
-    - Remember to use a tab for indentation within the `Makefile`'s recipes.
+1.  Create the script file and make it executable:
+    ```bash
+    touch analyze_data.sh
+    chmod +x analyze_data.sh
+    ```
+2.  Open `analyze_data.sh` and add the following code.
 
-<br>
+    **Add the Shebang and `set -e`**
+    ```bash
+    #!/bin/bash
+    set -e
+    ```
 
-## Step 4: Run the Lab and Submit!
-1. Run the pipeline: From your sw_api_pipeline directory, run the following command to execute the full pipeline:
-```
-make
-```
-2. Inspect the output: Check the film_report.txt file to ensure the data was fetched and processed correctly.
+    **Define Variables and Write the Header**
+    ```bash
+    RAW_DATA_DIR="raw_metars"
+    OUTPUT_FILE="weather_report.csv"
 
-3. Clean up: Run the clean target to remove the generated files:
-```
-make clean
-```
-4. Stage, Commit, Push, and Submit:
-- Stage all your changes.
-- Commit your changes. (Remember to add a good message using `-m`)
-- Push your branch to GitHub by running `git push --set-upstream origin Lab_3`.
-- Navigate to your forked repository on GitHub, find your Lab_3 branch, and copy the URL of your `sw_api_pipeline` directory.
-- Paste the URL into the Lab 3 assignment on Canvas.
+    echo "ICAO,ObservationTime,WindDirection,WindSpeed,TemperatureC,FlightCategory" > "$OUTPUT_FILE"
+    echo "Analyzing METAR data..."
+    ```
+    Here, we define our input and output files. The `echo` command with the single `>` redirects and **overwrites** the output file, ensuring it starts fresh with only the header row.
+
+    **Loop Through the JSON Files and Process with `jq`**
+    ```bash
+    for json_file in "$RAW_DATA_DIR"/*.json; do
+      if [ -f "$json_file" ]; then
+        if [ "$(jq 'length' "$json_file")" -gt 0 ]; then
+          jq -r '.[0] | [.icaoId, .reportTime, .wdir, .wspd, .temp, .fltCat] | @csv' "$json_file" >> "$OUTPUT_FILE"
+        else
+          echo "Warning: No METAR data found in $json_file. Skipping." >&2
+        fi
+      fi
+    done
+    
+    echo "Analysis complete. Results are in '$OUTPUT_FILE'."
+    ```
+    The **`for` loop** iterates through every file ending in `.json` inside our `raw_metars` directory. The **`jq`** command is the core of this script. It:
+    * `jq -r`: Tells `jq` to output raw strings without quotes.
+    * `'.[0]'`: Selects the first (and only) element from the JSON array.
+    * `'| [.icaoId, .reportTime, ...]'`: Creates a new array with the values from the specified keys in the JSON object.
+    * `'| @csv'`: Converts that array of values into a single comma-separated line.
+    The `>>` redirects and **appends** this new line to the `weather_report.csv` file, so we don't overwrite the header or the previous data.
+
+---
+
+### Step 4: Create a `Makefile` to Automate the Pipeline
+
+The `Makefile` will orchestrate your scripts, ensuring they run in the correct order.
+
+1.  Create a file named `Makefile`:
+    ```bash
+    touch Makefile
+    ```
+2.  Open `Makefile` and add the following rules. **NOTE: The indentation for the commands must be a single tab character, not spaces.**
+
+    ```makefile
+    .PHONY: all fetch analyze clean
+
+    # The default target. Running 'make' will execute this rule.
+    all: analyze
+
+    # Rule to fetch the raw METAR data.
+    fetch:
+    	@echo "--- Fetching data from the Aviation Weather API ---"
+    	bash ./fetch_metars.sh
+
+    # Rule to analyze the raw data.
+    analyze: fetch
+    	@echo "--- Analyzing raw METAR data ---"
+    	bash ./analyze_data.sh
+    	@echo "--- Pipeline complete. Results in weather_report.csv ---"
+
+    # Rule to clean up all generated files and directories.
+    clean:
+    	@echo "--- Cleaning up generated files and directories ---"
+    	rm -rf raw_metars/ weather_report.csv
+    ```
+    A `Makefile` defines a series of **targets** (e.g., `fetch`, `analyze`) and their **prerequisites**. When you run `make analyze`, it first sees that `fetch` is a prerequisite, so it runs the `fetch` target first. This automatically enforces the correct order of operations. The `clean` target is a common convention for removing temporary or generated files.
+
+---
+
+### Step 5: Run the Pipeline and Verify
+
+1.  Run the full pipeline with a single command:
+    ```bash
+    make
+    ```
+    This command will execute both scripts in the correct order and produce the final `weather_report.csv` file.
+
+2.  Verify the output by using `cat` or `less`:
+    ```bash
+    cat weather_report.csv
+    ```
+
+3.  Finally, clean up your workspace:
+    ```bash
+    make clean
+    ```
+
+4.  Add, commit, and push your changes to GitHub to submit your work for grading.
+    ```bash
+    git add .
+    git commit -m "Complete Lab 3: Aviation Weather Pipeline"
+    git push --set-upstream origin Lab_3
+    ```
