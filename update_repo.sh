@@ -25,10 +25,10 @@ check_remotes() {
 # Function to update `main` branch from `upstream`
 update_main() {
     echo "Updating your 'main' branch..."
-    git checkout main
-    git fetch upstream
-    git merge upstream/main -m "Merging upstream/main into local main via update_repo"
-    git push origin main
+    git checkout main    # Switch to local main branch
+    git fetch upstream    # Download everything from the upstream remote repository
+    git merge upstream/main -m "Merging upstream/main into local main via update_repo"    # Merge the commits from upstream/main into your current branch (i.e. your local main branch)
+    git push origin main    # push your local main branch to your remote main branch
     echo "Local and Remote 'main' branches are now up to date with the original repo."
 }
 
