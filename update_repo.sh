@@ -27,9 +27,9 @@ update_main() {
     echo "Updating your 'main' branch..."
     git checkout main
     git fetch upstream
-    git merge upstream/main
+    git merge upstream/main -m "Merging upstream/main into local main via update_repo"
     git push origin main
-    echo "'main' branch is now up to date with the original repo."
+    echo "Local and Remote 'main' branches are now up to date with the original repo."
 }
 
 # Function to handle branch updates
