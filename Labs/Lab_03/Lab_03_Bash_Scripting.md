@@ -52,7 +52,7 @@ This script will use `curl` to fetch JSON data for each airport and save it to a
 
     **Define Variables**
     ```bash
-    API_URL="[https://aviationweather.gov/api/data/metar](https://aviationweather.gov/api/data/metar)"
+    API_URL="https://aviationweather.gov/api/data/metar"
     OUTPUT_DIR="raw_metars"
     AIRPORT_CODES_FILE="airport_codes.txt"
 
