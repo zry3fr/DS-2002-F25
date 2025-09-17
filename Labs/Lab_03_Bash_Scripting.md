@@ -4,18 +4,17 @@ Welcome to Lab 3! This week, you'll apply what you've learned about Bash scripti
 <br>
 
 ## Step 0. Setup
-Open your Terminal: Navigate to your DS-2002-F25 repository.
-
-Create a New Branch: Create and move to a new branch for this lab:
-
-Bash
-
+1. Open your Terminal (macOS) or Git Bash (WIndows) and navigate to your DS-2002-F25 repository.
+2. Run the `update_repo.sh` script.
+3. Create a new branch called `Lab_3` and move into it:
+```
 git checkout -b Lab_3
-Create a Project Directory: Create a new directory for this lab and navigate into it:
+```
+4. Make a new directory for this lab in your Lab_03 directory, and navigate into your new directory:
+```
+mkdir Labs/Lab_03/sw_api_pipeline && cd Labs/Lab_03/sw_api_pipeline
+```
 
-Bash
-
-mkdir sw_api_pipeline && cd sw_api_pipeline
 Step 1: Create the fetch_films.sh Script
 This script will fetch details for all Star Wars films from the SWAPI (Star Wars API). Unlike the last activity, the API data is paginated, which means you'll need to use a loop to fetch all the data.
 
