@@ -46,17 +46,17 @@ update_branches() {
     echo "Your current branches:"
     git branch
 
-    echo "Would you like to update ALL branches or decide One At A Time? (OAAT / All please)"
+    echo "Would you like to update ALL branches or decide One At A Time? (All please / OAAT)"
     read -r DECISION
     
     # Get a list of all local branches except main
     BRANCHES=$(git branch | grep -v main | sed 's/ //g')
 
-    if [[ "$DECISION" == "All please" ]]; then
+    if [[ "$(echo "$DECISION" | tr '[:upper:]' '[:lower:]')" == "all please" ]]; then
         for branch in $BRANCHES; do
             merge_branch "$branch"
         done
-    elif [[ "$DECISION" == "OAAT" ]]; then
+    elif [[ "$(echo "$DECISION" | tr '[:upper:]' '[:lower:]')" == "oaat" ]]; then
         for branch in $BRANCHES; do
             merge_branch_interactive "$branch"
         done
