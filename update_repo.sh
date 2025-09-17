@@ -71,7 +71,8 @@ merge_branch() {
     local branch=$1
     echo "Updating branch: $branch"
     git checkout "$branch"
-    git merge main
+    # Merges main into the current branch with a non-interactive message
+    git merge main -m "Merging main into branch via update_repo"
     
     if [ $? -ne 0 ]; then
         handle_conflict "$branch"
@@ -114,4 +115,6 @@ check_remotes
 update_main
 update_branches
 
-echo "Script complete. All specified branches have been updated."
+# Final checkout to main branch after all operations are complete
+git checkout main
+echo "Script complete. All specified branches have been updated, and you are back on the main branch."
