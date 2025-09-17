@@ -6,7 +6,7 @@ Welcome to Lab 3! This week, you'll apply what you've learned about Bash scripti
 
 This lab should test your understanding of how to use these tools together to solve a more complex problem.
 
-Good luck and may the source be with you! 😉
+Good luck and may the source be with you! 🤓
 
 <br>
 
