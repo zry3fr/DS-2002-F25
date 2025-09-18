@@ -1,6 +1,5 @@
 .PHONY: all fetch analyze clean
 
-# Set analyze as the default target
 all: analyze
 
 fetch:
