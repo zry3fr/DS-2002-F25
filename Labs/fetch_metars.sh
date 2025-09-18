@@ -1,18 +1,16 @@
 #!/bin/bash
-set -e  # Exit immediately if a command exits with a non-zero status
+set -e  
 
-# Define variables
 API_URL="https://aviationweather.gov/api/data/metar"
 OUTPUT_DIR="raw_metars"
 AIRPORT_CODES_FILE="airport_codes.txt"
 
-# Create the output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
 
 echo "Fetching METAR data for airports..."
 
 while read -r airport_code; do
-    # Skip empty lines
+
     if [ -z "$airport_code" ]; then
         continue
     fi
