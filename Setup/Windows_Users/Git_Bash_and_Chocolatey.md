@@ -11,6 +11,8 @@ Please follow these steps and read each step carefully:
 
 <br>
 
+---
+
 # Chocolatey 🍫
 **Chocolatey** is a package manager for Windows. Think of it as an "app store" for the command line. It's important because it automates the process of installing, updating, and removing software from the command line. Instead of manually downloading an installer, you can use a single command like `choco install make` to automatically download and set up a program. This saves time and ensures your tools are consistently managed.
 
