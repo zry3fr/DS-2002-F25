@@ -207,4 +207,4 @@ curl -s "https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=20" |
 4. Navigate to your forked repository on GitHub.
 5. Switch to your `Activity_4` branch on GitHub.
 6. Navigate to your `python_activity` directory.
-7. Copy the URL to your `python_activity` directory on your `Activity_4` branch, and paste the URL into the Activity 4 assignment on Canvas
+7. Copy the URL to your `python_activity` directory on your `Activity_4` branch, and paste the URL into the Activity 4 assignment on Canvas.
