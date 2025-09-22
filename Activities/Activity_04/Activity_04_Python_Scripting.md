@@ -13,18 +13,27 @@ In this activity, you will use `curl` to fetch JSON data from a public API, and 
 
 ### Navigate to your `DS-2002-F25` directory, update your `main` branch, and setup the Activity.
 1. Open your Git Bash (Windows) or Terminal (macOS).
+
 2. Navigate to your DS-2002-F25 directory. For example: `cd ~/Documents/GitHub/DS-2002-F25/` (yours may differ)
+
 3. Switch to your `main` branch `git checkout main`.
+
 4. Make sure that you do not have any unstaged or uncommitted stages by running `git status`.
+
 5. Run `git remote -v`:
    - If your upstream lists my repo `austin-t-rivera/DS-2002-F25.git` and your origin list your repo `<your-github-id>/DS-2002-F25.git`, proceed to step 6.
    - If your upstream lists your repo or does not exist, set my repo by running `git remote add upstream git@github.com:austin-t-rivera/DS-2002-F25.git` and continue in step 5.
      - Run `git fetch upstream` and continue in step 5.
      - Run `git merge upstream/main main` and proceed to step 6.
+
 6. Run the `update_repo.sh` file.
+
 7. Use `cd` to navigate to your `DS-2002-F25` repository.
+
 8. Use `cd` to further navigate to your `/Activities/Activity_04` directory.
+
 9. Run `git checkout -b Activity_4` to create and move to a new branch named "Activity_4".
+
 10. Create a new directory for this project and navigate into it:
 ```
 mkdir python_activity && cd python_activity
@@ -61,7 +70,10 @@ After some digging you find yourself on TCG Player, where you can see the prices
 You may think you would want to grab everything TCG Player has to offer on their API, but you would be wrong! There are more cards than you can imagine and it would be way more than we need, so we have to be strategic!
 
 1. In your command line, you can run the following to grab the first card of the base set of pokemon cards and store it as a `json`:
-`curl -s https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=1 > test.json`
+```
+curl -s https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=1 > test.json
+```
+
 2. AHHHHHHHH! That did not work and you got a bunch of JSON all over your screen. Let's breakdown the command to see why:
    - `curl`: Client url, pulls the data.
    - `-s`: silence, so that the curl command doesn't display stuff while we run it.
@@ -71,19 +83,26 @@ You may think you would want to grab everything TCG Player has to offer on their
    - `&page=1`: Just look at the first page.
    - `pageSize=1`: Set the page size to 1, so we only get 1 card.
    - `> test.json`: Write this output into our `test.json` file.
-3. The reason this happened is because we forgot our quotes! Meaning when we ran this, bash interpretted it as:
+
+3. Run `clear` in your command line to clean this up.
+
+4. The reason this happened is because we forgot our quotes! Meaning when we ran this, bash interpretted it as:
    - `curl -s https://api.pokemontcg.io/v2/cards?q=set.id:base1` and left off the
    - `&page=1&pageSize=1 > test.json`
-   - Meaning it just grabbed all the base set cards!
-4. Run this and you should get the desired outcome:
+   - Meaning it just grabbed all the base set cards, printed them, and then created a file named `test.json`!
+
+5. But this is not what we want. Run this and you should get the desired outcome:
 ```
 curl -s "https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=1" > test.json
 ```
+
 5. Run `cat` on your `test.json` file to check its contents.
+
 6. STILL GROSS! Use our good friend `jq` to print the JSON as "pretty-print":
 ```
 cat test.json | jq '.'
 ```
+
 7. Now that the data actually looks nice, feel free to change the parameters around and see what it looks like with say 2 or 5 records.
 
 <br>
@@ -173,7 +192,7 @@ curl -s "https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=20" |
    - `pageSize=20`: Set the page size to 20, so we only get 20 cards.
    - `|`: Pipe will feed the `stdout` from the previous command/script into the next as its `stdin`.
    - `python ./process_cards.py`: Running the Python script we created to feed the data in and process it.
-   - - `> pokemon_cards.csv`: Write this output into our new `pokemon_cards.csv` file.
+   - `> pokemon_cards.csv`: Write this output into our new `pokemon_cards.csv` file.
 
 **What you did:** You built a simple but powerful pipeline. Bash handled the initial data retrieval, while your Python script took on the more complex job of parsing the nested data and transforming it into a structured, tabular format, ready for analysis.
 
