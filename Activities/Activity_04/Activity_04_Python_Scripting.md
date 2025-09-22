@@ -1,135 +1,167 @@
-### In-Class Activity: Converting JSON to CSV with Python
+# Activity 4: Using Bash and Python Together
+In this activity, you will use `curl` to fetch JSON data from a public API, and then write and run a Python script to parse that JSON and convert it into a well-structured CSV file. This demonstrates how to combine Bash for data retrieval and Python for data transformation.
 
-**Objective:** In this activity, you will use `curl` to fetch JSON data from a public API, and then write and run a Python script to parse that JSON and convert it into a well-structured CSV file. This demonstrates how to combine Bash for data retrieval and Python for data transformation.
+<br>
+
+## Step 0. Setup 
+
+### Follow these directions to ensure you have `Python` and `PIP` installed and working in your environment:
+- [Windows Users](https://github.com/austin-t-rivera/DS-2002-F25/blob/main/Setup/Windows_Users/)
+- [macOS Users](https://github.com/austin-t-rivera/DS-2002-F25/blob/main/Setup/macOS_Users/)
+
+<br>
+
+### Navigate to your `DS-2002-F25` directory, update your `main` branch, and setup the Activity.
+1. Open your Git Bash (Windows) or Terminal (macOS).
+2. Navigate to your DS-2002-F25 directory. For example: `cd ~/Documents/GitHub/DS-2002-F25/` (yours may differ)
+3. Switch to your `main` branch `git checkout main`.
+4. Make sure that you do not have any unstaged or uncommitted stages by running `git status`.
+5. Run `git remote -v`:
+   - If your upstream lists my repo `austin-t-rivera/DS-2002-F25.git` and your origin list your repo `<your-github-id>/DS-2002-F25.git`, proceed to step 6.
+   - If your upstream lists your repo or does not exist, set my repo by running `git remote add upstream git@github.com:austin-t-rivera/DS-2002-F25.git` and continue in step 5.
+     - Run `git fetch upstream` and continue in step 5.
+     - Run `git merge upstream/main main` and proceed to step 6.
+6. Run the `update_repo.sh` file.
+7. Use `cd` to navigate to your `DS-2002-F25` repository.
+8. Use `cd` to further navigate to your `/Activities/Activity_04` directory.
+9. Run `git checkout -b Activity_4` to create and move to a new branch named "Activity_4".
+10. Create a new directory for this project and navigate into it:
+```
+mkdir python_activity && cd python_activity
+```
+
+<br>
 
 ---
 
-### Step 1: Get the Data 📥
+## Step 1: Understand the Data 📥
 
-First, we need some data to work with. We'll use a public API that generates random user data in JSON format. Use the `curl` command to download this data and save it to a file.
+### Scenario
+Unbeknowst to you, you have a long lost, older cousin, Austin, who suddenly disappears into the Shenandoeh Mountains to become a monk. Austin decides to leave behind all of his worldly possesions to you. Unfortunately, Austin was a poor man to begin with and left you only his binder of Pokemon Trading cards from when he was a kid. Lucky you!
 
-1.  **Create a new directory** for this activity and navigate into it.
+With your good fortune, you decide that you want to sell these bad boys, because you enjoy worldly possesions.
 
-    ```bash
-    mkdir python_activity && cd python_activity
-    ```
+BUT WAIT! You don't know anything about Pokemon Trading Cards... you weren't even alive when American Idol was still good... let alone original Pokemon cards from the 90s!
 
-2.  **Use `curl`** to get the data from the API and save it to a file named `users.json`.
+### Looking at the Data
+After some digging you find yourself on TCG Player, where you can see the prices of different Trading Card Games, and sell them there!
 
-    ```bash
-    curl -o users.json [https://randomuser.me/api?results=5](https://randomuser.me/api?results=5)
-    ```
+1. You find yourself first looking at an origin Alakazam card and scrolling around, seeing the prices: [Alakazam - Base Set (BS)](https://prices.pokemontcg.io/tcgplayer/base1-1)
+[![Alakazam - Base Set (BS)](https://images.pokemontcg.io/base1/1.png)]
 
-**What happened:** The `curl` command fetched a JSON file containing information for 5 random users from the specified URL. The `-o` flag told `curl` to save the output directly into a file named `users.json`.
+2. You realize that this binder is far too large, and the website is far too slow, and you want to combile a list of the market prices so you can tally up your portfolio.
+
+3. You then find yourself looking up the [TCG Player API](https://docs.pokemontcg.io/api-reference/cards/search-cards#sample-response) so you can write a script to grab what you need and put it in an easily readable CSV file! 
+
+<br>
 
 ---
 
-### Step 2: Write the Python Script 📝
+## Step 2. Grab the Data By Testing
+You may think you would want to grab everything TCG Player has to offer on their API, but you would be wrong! There are more cards than you can imagine and it would be way more than we need, so we have to be strategic!
 
+1. In your command line, you can run the following to grab the first card of the base set of pokemon cards and store it as a `json`:
+`curl -s https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=1 > test.json`
+2. AHHHHHHHH! That did not work and you got a bunch of JSON all over your screen. Let's breakdown the command to see why:
+   - `curl`: Client url, pulls the data.
+   - `-s`: silence, so that the curl command doesn't display stuff while we run it.
+   - `https://api.pokemontcg.io/v2/cards`: The base API for the Pokemon cards.
+   - `?q=`: Start a query for the API.
+   - `set.id:base1`: Only look at the Base 1 Set of cards.
+   - `&page=1`: Just look at the first page.
+   - `pageSize=1`: Set the page size to 1, so we only get 1 card.
+   - `> test.json`: Write this output into our `test.json` file.
+3. The reason this happened is because we forgot our quotes! Meaning when we ran this, bash interpretted it as:
+   - `curl -s https://api.pokemontcg.io/v2/cards?q=set.id:base1` and left off the
+   - `&page=1&pageSize=1 > test.json`
+   - Meaning it just grabbed all the base set cards!
+4. Run this and you should get the desired outcome:
+```
+curl -s "https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=1" > test.json
+```
+5. Run `cat` on your `test.json` file to check its contents.
+6. STILL GROSS! Use our good friend `jq` to print the JSON as "pretty-print":
+```
+cat test.json | jq '.'
+```
+7. Now that the data actually looks nice, feel free to change the parameters around and see what it looks like with say 2 or 5 records.
+
+<br>
+
+---
+
+## Step 3. Grab More Data, Keep What We Need
+We know that we can grab the data, but how do we grab what we need from the JSON and get it in a nice readable CSV file format?
+
+Should we use `jq`?
+
+No! Not over Austin's monk body! Python is better suited for tasks like this where we are manipulating structured data.
+
+<br>
+
+### Write a Python Script
 Now, we'll write a Python script that will read the JSON data you just downloaded. We'll start by reading the JSON and just printing out some of the information.
 
-1.  **Create a new Python file** named `process_users.py`.
+1.  **Create a new Python file** named `process_cards.py`.
 
-    ```bash
-    touch process_users.py
-    ```
+```
+touch process_cards.py
+```
 
 2.  **Make the script executable** and open it for editing.
 
-    ```bash
-    chmod +x process_users.py
-    ```
+```
+chmod +x process_cards.py
+```
 
-3.  **Copy and paste the following code** into `process_users.py`. This script will import the necessary modules, open the JSON file, and load the data into a Python dictionary.
+3.  **Copy and paste the following code** into `process_cards.py`:
+   - Set your `shebang`z:
+```
+#!/usr/bin/env python3
+```
+   - Import the necessary modules
+```
+import sys
+import json
+import csv
+```
+   - Open the JSON file (`stdin` from `curl`) and setup an error if JSON is not feeding in:
+```
+try:
+    data = json.loads(sys.stdin.read())
+except json.JSONDecodeError:
+    print("Error: Invalid JSON received from the pipe.", file=sys.stderr)
+    sys.exit(1)
+```
+   - Write in your headers for your output file:
+```
+fieldnames = ['card_id', 'card_name', 'set_name', 'rarity', 'market_price']
+writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames, restval="N/A")
+writer.writeheader()
+```
+   - Make sure to grab the data from your JSON object, i.e. not the metadata that can come with it.
+```
+cards = data['data']
+```
+   - Load the data into the Python dictionary that you created and set "N/A" for any missing fields.
+```
+for card in cards:
+    writer.writerow({
+        'card_id': card.get('id', 'N/A'),
+        'card_name': card.get('name', 'N/A'),
+        'set_name': card.get('set', {}).get('name', 'N/A'),
+        'rarity': card.get('rarity', 'N/A'),
+        'market_price': card.get('tcgplayer', {}).get('prices', {}).get('holofoil', {}).get('market', 'N/A')
+    })
+```
 
-    ```python
-    #!/usr/bin/env python3
-
-    import json
-
-    # Open the JSON file and load the data
-    with open('users.json', 'r') as f:
-        data = json.load(f)
-
-    # Get the list of users from the 'results' key
-    users = data['results']
-
-    # We will add more code here to process the data
-    print("User data loaded successfully!")
-    ```
+<br>
 
 ---
 
-### Step 3: Parse and Print the Data 👨‍💻
 
-The JSON data has a nested structure. Now, let's add some code to our script to access specific fields (like first name, last name, and email) for each user.
 
-1.  **Copy and paste the following `for` loop** to the end of your `process_users.py` file. This loop will iterate through the list of users and print out their name and email.
 
-    ```python
-    for user in users:
-        first_name = user['name']['first']
-        last_name = user['name']['last']
-        email = user['email']
 
-        print(f"Name: {first_name} {last_name}, Email: {email}")
-    ```
-
-2.  **Run the script** from your terminal. You should see the names and emails of the 5 random users.
-
-    ```bash
-    ./process_users.py
-    ```
-
----
-
-### Step 4: Transform to CSV ✨
-
-The real power of Python is its ability to transform data into a different format. Now, let's modify the script to convert the JSON data into a clean CSV file using the built-in `csv` module.
-
-1.  **Replace the `for` loop in `process_users.py`** with the following code. It will still read from the JSON but will now write the output to a new file in CSV format.
-
-    ```python
-    import csv
-
-    # We will still open the JSON file here as before...
-    # with open('users.json', 'r') as f:
-    #     data = json.load(f)
-    # users = data['results']
-
-    # Now, open a new file to write the CSV data to
-    with open('users.csv', 'w', newline='') as csv_file:
-        # Define the column headers for our CSV file
-        fieldnames = ['first_name', 'last_name', 'email']
-
-        # Create a DictWriter to easily write rows from a dictionary
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        # Write the header row
-        writer.writeheader()
-
-        # Loop through the users and write each one as a row
-        for user in users:
-            # Create a dictionary with the data we want to write
-            writer.writerow({
-                'first_name': user['name']['first'],
-                'last_name': user['name']['last'],
-                'email': user['email']
-            })
-
-    print("CSV file created successfully!")
-    ```
-
-2.  **Run the script** again. A new file named `users.csv` will be created in your directory.
-
-    ```bash
-    ./process_users.py
-    ```
-
-3.  **View the contents** of the new file to see the clean, tabular data.
-
-    ```bash
-    cat users.csv
-    ```
 
 **What you did:** You built a simple but powerful pipeline. Bash handled the initial data retrieval, while your Python script took on the more complex job of parsing the nested data and transforming it into a structured, tabular format, ready for analysis.
