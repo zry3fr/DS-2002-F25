@@ -157,11 +157,35 @@ for card in cards:
 
 <br>
 
----
+### Pipe it all together and run it!
 
-
-
-
-
+1. For the sake of time, we will limit this to 20 cards, but you can always add more! Run this in your command line:
+```
+curl -s "https://api.pokemontcg.io/v2/cards?q=set.id:base1&page=1&pageSize=20" | python ./process_cards.py > pokemon_cards.csv
+```
+2. Understand what this is doing:
+   - `curl`: Client url, pulls the data.
+   - `-s`: silence, so that the curl command doesn't display stuff while we run it. OPTIONAL: Remove the -s and see the timer since the processing is done in the Python script.
+   - `https://api.pokemontcg.io/v2/cards`: The base API for the Pokemon cards.
+   - `?q=`: Start a query for the API.
+   - `set.id:base1`: Only look at the Base 1 Set of cards.
+   - `&page=1`: Just look at the first page.
+   - `pageSize=20`: Set the page size to 20, so we only get 20 cards.
+   - `|`: Pipe will feed the `stdout` from the previous command/script into the next as its `stdin`.
+   - `python ./process_cards.py`: Running the Python script we created to feed the data in and process it.
+   - - `> pokemon_cards.csv`: Write this output into our new `pokemon_cards.csv` file.
 
 **What you did:** You built a simple but powerful pipeline. Bash handled the initial data retrieval, while your Python script took on the more complex job of parsing the nested data and transforming it into a structured, tabular format, ready for analysis.
+
+<br>
+
+---
+
+## Step 5: Add, Commit, Push, and Submit on Canvas!
+1. Stage all of your changes at once: `git add .`.
+2. Commit your staged changes to your local `Activity_4` branch **with a message**: `git commit -m ""`
+3. Push your local branch to your remote repository: `git push --set-upstream origin Activity_4`
+4. Navigate to your forked repository on GitHub.
+5. Switch to your `Activity_4` branch on GitHub.
+6. Navigate to your `python_activity` directory.
+7. Copy the URL to your `python_activity` directory on your `Activity_4` branch, and paste the URL into the Activity 4 assignment on Canvas.
