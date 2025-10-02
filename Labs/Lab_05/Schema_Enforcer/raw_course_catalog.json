@@ -1,0 +1,42 @@
+[
+    {
+        "course_id": "DS2002",
+        "section": "001",
+        "title": "Data Science Systems",
+        "level": 200,
+        "instructors": [
+            {
+                "name": "Austin Rivera",
+                "role": "Primary"
+            },
+            {
+                "name": "Heywood Williams-Tracy",
+                "role": "TA"
+            }
+        ]
+    },
+    {
+        "course_id": "PLPT3200",
+        "section": "100",
+        "title": "African American Political Theory",
+        "level": 200,
+        "instructors": [
+            {
+                "name": "Lawrie Balfour",
+                "role": "Primary"
+            }
+        ]
+    },
+    {
+        "course_id": "GSGS2610",
+        "section": "001",
+        "title": "Systems of Inequality",
+        "level": 200,
+        "instructors": [
+            {
+                "name": "Andreja Sillunas",
+                "role": "Primary"
+            }
+        ]
+    }
+]
