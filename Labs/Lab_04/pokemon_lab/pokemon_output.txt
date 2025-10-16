@@ -1,0 +1,49 @@
+--- Running Test Pipeline (Built-in Test Modes) ---
+Starting Pokémon Update Script in Test Mode...
+Running test portfolio update...
+Loaded lookup columns: ['card_id', 'card_name', 'card_number', 'set_id', 'set_name', 'card_market_value']
+Loaded inventory columns: ['card_name', 'set_id', 'card_number', 'binder_name', 'page_number', 'slot_number', 'card_id']
+Loaded lookup columns: ['card_id', 'card_name', 'card_number', 'set_id', 'set_name', 'card_market_value']
+Loaded inventory columns: ['card_name', 'set_id', 'card_number', 'binder_name', 'page_number', 'slot_number', 'card_id']
+Merging inventory_df and lookup_df...
+Resulting portfolio_df columns: ['card_name_inv', 'set_id_inv', 'card_number_inv', 'binder_name', 'page_number', 'slot_number', 'card_id', 'card_name_look', 'card_number_look', 'set_id_look', 'set_name', 'card_market_value']
+Portfolio successfully written to test_card_portfolio.csv
+Starting Pokémon Portfolio Summary in Test Mode...
+Running summary for test portfolio...
+
+=== Pokémon Card Portfolio Summary ===
+Total Portfolio Value: $326.55
+
+Most Valuable Card:
+  Name: Charizard
+  ID: base1-4
+  Market Value: $250.75
+======================================
+
+Test complete.
+
+=== Starting Full Pokemon Portfolio Pipeline ===
+[1/2] Running update_portfolio (ETL)...
+Running production portfolio update...
+/workspaces/DS-2002-F25/Labs/Lab_04/pokemon_lab/update_portfolio.py:48: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  lookup_df = pd.concat(all_lookup_df, ignore_index=True)
+Loaded lookup columns: ['card_id', 'card_name', 'card_number', 'set_id', 'set_name', 'card_market_value']
+Loaded inventory columns: ['card_name', 'set_id', 'card_number', 'binder_name', 'page_number', 'slot_number', 'card_id']
+Loaded lookup columns: ['card_id', 'card_name', 'card_number', 'set_id', 'set_name', 'card_market_value']
+Loaded inventory columns: ['card_name', 'set_id', 'card_number', 'binder_name', 'page_number', 'slot_number', 'card_id']
+Merging inventory_df and lookup_df...
+Resulting portfolio_df columns: ['card_name_inv', 'set_id_inv', 'card_number_inv', 'binder_name', 'page_number', 'slot_number', 'card_id', 'card_name_look', 'card_number_look', 'set_id_look', 'set_name', 'card_market_value']
+Portfolio successfully written to card_portfolio.csv
+[2/2] Running generate_summary (Reporting)...
+Running summary for production portfolio...
+
+=== Pokémon Card Portfolio Summary ===
+Total Portfolio Value: $1,470.85
+
+Most Valuable Card:
+  Name: Charizard
+  ID: base1-4
+  Market Value: $250.75
+======================================
+
+=== Pokemon Portfolio Pipeline Completed Successfully ===
