@@ -3,7 +3,7 @@ import boto3
 s3 = boto3.client('s3', region_name='us-east-1')
 
 bucket = 'ds2002-f25-zry3fr'
-local_file = 'PNG_transparency_demonstration_1.png'  # Replace with your file
+local_file = 'PNG_transparency_demonstration_1.png' 
 s3_key = 'public_image.png'
 
 s3.upload_file(
